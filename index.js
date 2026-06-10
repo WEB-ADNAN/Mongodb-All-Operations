@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const registrationController = require('./controllers/registrationController')
 const alluserController = require('./controllers/alluserController')
 const deleteuserController = require('./controllers/deleteuserController')
+const edituserController = require('./controllers/edituserController')
 const app = express()
 
 //middlewares
@@ -16,8 +17,12 @@ mongoose.connect('mongodb+srv://Test:hXA9HgC6XeemQ1aL@cluster0.8nf1qxl.mongodb.n
 //Routs
 
 app.post('/registration', registrationController)
+
 app.get('/alluser', alluserController)
+
 app.delete('/delete/:id', deleteuserController)
+
+app.post('/edituser/:id', edituserController)
 
 //port
 app.listen(5000, ()=>{
