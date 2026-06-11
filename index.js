@@ -8,6 +8,8 @@ const loginController = require('./controllers/loginController')
 const addressModel = require('./models/addressModel')
 const addressController = require('./controllers/addressController')
 const getaddressController = require('./controllers/getaddressController')
+const forgotPasswordController = require('./controllers/forgotPasswordController')
+const resetPasswordController = require('./controllers/resetPasswordController')
 const app = express()
 
 //middlewares
@@ -33,6 +35,10 @@ app.post('/login', loginController)
 app.post('/user/address', addressController)
 
 app.get('/address', getaddressController)
+
+app.post('/forgotPassword', forgotPasswordController)
+
+app.post('/resetPassword', resetPasswordController)
 
 //port
 app.listen(5000, ()=>{
