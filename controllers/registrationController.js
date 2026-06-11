@@ -1,13 +1,26 @@
 const Registration = require('../models/registrationModel')
 const nodemailer = require("nodemailer");
+const bcrypt = require('bcrypt')
 
 const registrationController = async (req,res)=>{
     const {username,email,password} = req.body
+
+    //email existing check
+    let existingEmail = await Registration.findOne({email:email})
+
+    if(existingEmail){
+        return res.send("Email is already exist, please try with another email")
+    }
+
+    //hash password convert
+    let hash = bcrypt.hashSync(password, 10)
+    console.log(hash);
+    
     
     let user = new Registration({
         username: username,
         email: email,
-        password: password
+        password: hash
     })
 
     user.save()
